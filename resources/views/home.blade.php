@@ -6,9 +6,9 @@
         <div class="row">
             <div class="col-md-12">
                 @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
+                <div class="alert alert-success" role="alert">
+                    {{ session('status') }}
+                </div>
                 @endif
             </div>
         </div>
@@ -18,7 +18,11 @@
                 <div class="card-header">Last added</div>
 
                 <div class="card-body">
-                    in!
+                    <ul class="list-group">
+                        @foreach($added as $a)
+                        <li class="list-group-item"><a href="/place/{{ $a['id'] }}">{{ $a['name'] }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>
@@ -28,7 +32,11 @@
                 <div class="card-header">Last cleaned</div>
 
                 <div class="card-body">
-                    in!
+                    <ul class="list-group">
+                            @foreach($cleaned as $a)
+                            <li class="list-group-item"><a href="/place/{{ $a['id'] }}">{{ $a['name'] }}</a></li>
+                            @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

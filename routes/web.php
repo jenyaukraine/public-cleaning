@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 
 /*
@@ -27,11 +25,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 Route::get('/map', 'HomeController@map')->name('map');
 Route::get('/add', 'HomeController@add')->name('add');
 Route::get('/profile', 'HomeController@profile')->name('profile');
 
-Route::get('/profile1', 'HomeController@profile_places')->name('profile_places');
+Route::get('/place/{id}', 'HomeController@single_place')->name('place');
 
 Route::post('/place_add', 'HomeController@place_add')->name('place_add');
+Route::post('/place_review', 'HomeController@place_review')->name('place_review');
+
+Route::get('/admin_review', 'HomeController@admin_review')->name('admin_review');
+
+Route::get('/review/approve/{id}/{userid}', 'HomeController@admin_approve')->name('admin_approve');
+Route::get('/review/delete/{id}', 'HomeController@admin_delete')->name('admin_delele');
+
