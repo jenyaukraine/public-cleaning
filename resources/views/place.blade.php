@@ -35,8 +35,7 @@
                                     {!! Form::open(['route'=>'place_review','files' => 'true','enctype'=>'multipart/form-data']) !!}
 
                                     @csrf
-
-                                    <input type="hidden" name="place_id" value="{{ $place->id }}">
+                                    <input type="hidden" name="place_id" value="{{ $id }}">
 
                                     <div class="form-group row pt-4">
                                         <label for="image"
@@ -82,7 +81,7 @@
                                         <li class="list-group-item"><img class="card-img-top"
                                                 src="{{ asset('storage/'.$place->image) }}" alt="{{ $place->name }}">
                                         </li>
-                                        @if($place->review_image)
+                                        @if($place->review_image && $place->approved == '1')
                                         <li class="list-group-item">That's after
                                         </li>
                                         <li class="list-group-item"><img class="card-img-top"

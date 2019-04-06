@@ -50,7 +50,7 @@ class HomeController extends Controller
         $id = (int) $id;
         $data = Places::where('places.id', $id)->leftjoin('review_place as rp', 'rp.place_id', '=', 'places.id')->first();
 
-        return view('place', ['place' => $data]);
+        return view('place', ['place' => $data, 'id'=>$id]);
     }
     public function place_add(Request $request)
     {
@@ -116,6 +116,8 @@ class HomeController extends Controller
     }
 
     public function admin_review(){
+        if(\Auth::id() != 1)
+        return redirect()->route('home')->with('status', 'Access denied!');
         $data = Review_Place::select("*","review_place.id as review_id")->join('places as pl', 'pl.id', '=', 'review_place.place_id')->where('state', 3)->get();
 
         return view('admin_review', ['places' => $data]);

@@ -50,6 +50,11 @@
                                 </li>
                             @endif
                         @else
+                            @if(Auth::id() == 1)
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin_review') }}">{{ __('Admin Review') }}</a>
+                            </li>
+                            @endif
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('home') }}">{{ __('Home') }}</a>
                             </li>
